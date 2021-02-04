@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#333333"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".TimelineActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#1A1A1A"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/user_icon" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center_vertical"
+            android:text="Fulano de Tal"
+            android:textColor="@color/teal_700"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/top_menu" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:id="@+id/flRvHolder"
+            android:layout_width="0dp"
+            android:layout_height="320dp"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="20"
+            android:layout_marginTop="50dp"
+            android:alpha="0"
+            tools:alpha="1f">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:orientation="vertical"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="0dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvTriviaList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"/>
+
+        </androidx.cardview.widget.CardView>
+            <ImageView
+                android:id="@+id/ivEmotions"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/b_emotions"
+                android:layout_gravity="bottom|right"
+                />
+        </FrameLayout>
+
+        //TODO: precisa ver o tracker pq continua horizontal e tb a altura que fica pequena
+        <!--
+                <SeekBar
+                    android:id="@+id/seekBar"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:indeterminate="false"
+                    android:rotation="180"
+                    tools:max="100"
+                    tools:progress="30"
+                    style="@style/Widget.ProgressBar.Vertical"
+                    />-->
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5sp"
+            android:layout_weight="4"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTimerStart"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="0'00'00"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textColor="@color/teal_700" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="@style/Widget.ProgressBar.Vertical"
+                android:layout_width="20dp"
+                android:layout_height="0dp"
+                android:layout_weight="12"
+                android:indeterminate="false"
+                android:rotation="180"
+                tools:max="100"
+                tools:progress="30"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/tvTimerEnd"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="0'00'00"
+                android:textAlignment="center"
+                android:textColor="@color/teal_700" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#1A1A1A"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="6"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingLeft="10dp">
+
+            <TextView
+                android:id="@+id/tvEpParent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Black Mirror"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvEpTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="S01 E01 The Natonal Ant..."
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvTimerCurrent"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:text="0'00'00"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="@color/teal_700" />
+
+        <ImageView
+            android:id="@+id/ivPausePlayButton"
+            android:layout_width="0dp"
+            android:layout_height="75dp"
+            android:baselineAlignBottom="true"
+            android:src="@drawable/bplay"
+            android:layout_weight="2"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>

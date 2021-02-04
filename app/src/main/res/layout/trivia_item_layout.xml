@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="top"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/tvTriviaCatTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="10sp"
+        android:layout_marginTop="3sp"
+        android:gravity="left"
+        android:textColor="#c1c1c1"
+        android:textSize="15sp"
+        android:padding="3dp"
+        android:textStyle="bold"
+        tools:text="Trivia • 0'01''02"
+        />
+
+    <TextView
+        android:id="@+id/tvTriviaText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="100dp"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="10sp"
+        android:layout_marginTop="3sp"
+        android:gravity="left"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        tools:text="O primeiro-ministro (Rory Kinnear, à esquerda) perplexo após assistir um video da princesa Susannah (Lydia Wilson)"
+        />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:orientation="vertical"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="0dp"
+        android:layout_margin="10dp"
+        >
+
+        <ImageView
+            android:id="@+id/ivTriviaImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:layout_gravity="center"
+            android:contentDescription="Image"
+            tools:src="@drawable/image1"
+            />
+    </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
