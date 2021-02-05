@@ -6,15 +6,9 @@ import android.os.CountDownTimer
 import android.view.MotionEvent
 import android.view.View
 import android.view.animation.AccelerateInterpolator
-import android.widget.FrameLayout
 import android.widget.LinearLayout
-import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.marginTop
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.PagerSnapHelper
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.SnapHelper
 import com.jeferson.moviestvtrivia.databinding.ActivityTimelineBinding
 import java.util.concurrent.TimeUnit
 
@@ -30,8 +24,9 @@ class TimelineActivity : AppCompatActivity() {
     private var timelineCurrentTick: Long? = null
     private var triviaPosition: Int = 0
     private var pauseTimeline = false
-    private var marginFactor: Long? = null
+    private var marginFactor: Float? = null
 
+    //TODO: implementar a leitura de legendas
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,33 +36,13 @@ class TimelineActivity : AppCompatActivity() {
         timelineDuration = 13000.toLong()
         timelineTick = 100.toLong()
         timelineCurrentTick = 0.toLong()
-        marginFactor = 150.toLong()/timelineDuration!!
+        marginFactor = 150f/timelineDuration!!.toFloat()
 
         setupTriviaRecyclerView()
 
         binding.ivPausePlayButton.setOnClickListener {
             pausePlayTimelineTimer()
         }
-
-        // Set a SeekBar change listener
-/*        binding.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-
-            override fun onProgressChanged(seekBar: SeekBar, i: Int, b: Boolean) {
-                // Display the current progress of SeekBar
-                //text_view.text = "Progress : $i"
-            }
-
-            override fun onStartTrackingTouch(seekBar: SeekBar) {
-                // Do something
-                Toast.makeText(applicationContext,"start tracking",Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onStopTrackingTouch(seekBar: SeekBar) {
-                // Do something
-                Toast.makeText(applicationContext,"stop tracking",Toast.LENGTH_SHORT).show()
-            }
-        })*/
-
     }
 
     override fun onDestroy() {
@@ -124,8 +99,9 @@ class TimelineActivity : AppCompatActivity() {
                         }
                         
                         val layoutParams = binding.flRvHolder.layoutParams as LinearLayout.LayoutParams
-                        //layoutParams.setMargins(20, ((timelineCurrentTick!! * marginFactor!!)+50.toLong()).toInt(), 0, 0)
-                        layoutParams.setMargins(20, 100, 0, 0)
+                        var dpRatio: Float = this@TimelineActivity.resources.displayMetrics.density
+                        var pixelForDp = (((timelineCurrentTick!!.toFloat() * marginFactor!!).toLong()+50.toLong()).toInt() * dpRatio).toInt()
+                        layoutParams.topMargin = pixelForDp
                         binding.flRvHolder.layoutParams = layoutParams
 
                         if(binding.flRvHolder.alpha == 0f) {
@@ -133,7 +109,7 @@ class TimelineActivity : AppCompatActivity() {
                         }
                     }
 
-                    // 500 ms antes do proximo tick
+                    // 500 ms antes do proximo tick esconde a trivia anterior
                     if (timelineCurrentTick == timeShowNextTrivia-(500.toLong())) {
                         if(binding.flRvHolder.alpha == 1f) {
                             binding.flRvHolder.animate().alpha(0f).setDuration(500).setInterpolator(AccelerateInterpolator()).start()
